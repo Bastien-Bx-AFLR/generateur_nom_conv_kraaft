@@ -425,15 +425,15 @@ const clients = ['ORANGE', 'FREE', 'NÎMES', 'ALES', 'VIDEO', 'NGE', 'VDR AI 11'
       }
     }
 
-    function isFormComplete() {
-      const client = clientSelect.value.trim();
-      const type = typeSelect.disabled ? '' : typeSelect.value.trim();
-      const ticket = (client === 'VDR AI 11' || client === 'VDR AI 66') && ticketInput.value.trim()
-  ? ticketInput.value.trim()
-  : '';
-      const site = siteInput.value.trim();
-      return Boolean(client && type && site && ticket);
-    }
+  function isFormComplete() {
+  const client = clientSelect.value.trim();
+  const type = typeSelect.disabled ? '' : typeSelect.value.trim();
+  const site = siteInput.value.trim();
+  const needsTicket = client === 'VDR AI 11' || client === 'VDR AI 66';
+  const ticket = needsTicket ? ticketInput.value.trim() : 'skip';
+
+  return Boolean(client && type && site && ticket);
+}
 
     function syncTicketState() {
       const editable = clientSelect.value === 'VDR AI 11' || clientSelect.value === 'VDR AI 66';
